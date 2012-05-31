@@ -1,0 +1,1 @@
+	“If everything when it occupies an equal space is at rest, and if that which is in locomotion is always occupying such a space at any moment, the flying arrow is therefore motionless.” — Aristotle, Physics VI:9, 239b5
