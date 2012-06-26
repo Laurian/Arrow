@@ -10,6 +10,7 @@
     
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="vendor/popcorn-js/popcorn.js"></script>
+    <script src="vendor/popcorn-js/plugins/code/popcorn.code.js"></script>
     <script src="vendor/mediaelement/build/mediaelement-and-player.min.js"></script>
 
     <link rel="stylesheet" href="vendor/normalize.css/normalize.css">
@@ -43,10 +44,22 @@
       $.get('example/soundslide.xml', function(xml) {
         $('slide', xml).each(function(i, e){
           var $e = $(e);
-          pop.cue(parseInt($e.find('timing').text())/1000, function(){
-            $('img').attr("src", "example/custom/"+ $e.find('file').text());
-            $('figcaption').text($e.find('caption').text());
-          });
+    	  
+		  $n = $e.next();
+		  
+          // pop.cue(parseInt($e.find('timing').text())/1000, function(){
+          //             $('img').attr("src", "example/custom/"+ $e.find('file').text());
+          //             $('figcaption').text($e.find('caption').text());
+          //           });
+		  
+		  pop.code({
+			  start: 	parseInt($e.find('timing').text())/1000,
+			  end: 		parseInt($n.find('timing').text())/1000,
+			  onStart: function() {
+	              $('img').attr("src", "example/custom/"+ $e.find('file').text());
+	              $('figcaption').text($e.find('caption').text());
+			  }
+		  });
         });
       });
       
